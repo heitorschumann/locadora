@@ -1,0 +1,8 @@
+main {
+	width: 100vw;
+	height: 400vh;
+	background-color: gray;
+	padding: 100px 0;
+	display: flex;
+	flex-wrap: wrap;
+}

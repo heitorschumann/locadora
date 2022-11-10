@@ -1,0 +1,23 @@
+.card {
+	height: 55vh;
+	width: 25vw;
+}
+
+.card img {
+	height: 30vh;
+	width: 12vw;
+	display: block;
+	margin: 10px auto;
+}
+
+.card div {
+	width: 20vw;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	background-color: azure;
+	padding: 5px;
+	border-radius: 25px;
+	border: 4px solid black;
+}
