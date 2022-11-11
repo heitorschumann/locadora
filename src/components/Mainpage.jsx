@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./mainpage.css";
 import Card from "./Card";
+import { useEffect } from "react";
 
 const ids = [
 	"tt0068646",
@@ -14,49 +16,44 @@ const ids = [
 	"tt0167261",
 	"tt0047478",
 	"tt0245429",
-	"tt0851578", // Paprika;
-	"tt0107290", // Jurassic Park;
-	"tt0088247", // The Terminator;
-	"tt0113568", // Ghost in the Shell;
-	"tt0437086", // Alita: Battle Angel;
-	"tt0470752", // Ex Machina;
-	"tt1375666", // Inception;
-	"tt0118884", // Contact;
-	"tt0113243", // Hackers;
-	"tt0246578", // Donnie Darko;
-	"tt0094625", // Akira;
+	"tt0851578",
+	"tt0107290",
+	"tt0088247",
+	"tt0113568",
+	"tt0437086",
+	"tt0470752",
+	"tt1375666",
+	"tt0118884",
+	"tt0113243",
+	"tt0246578",
+	"tt0094625",
 ];
 
 const Mainpage = () => {
-	let [movieObjs, setMovieObjs] = useState([]);
+	let movieObjs = [];
 
-	function requisitaApi(id) {
-		var requisicao = new XMLHttpRequest();
+	function getMovieData(id) {
+		let url = `http://www.omdbapi.com/?i=${id}&apikey=4867be78`;
 
-		requisicao.open(
-			"GET",
-			`http://www.omdbapi.com/?i=${id}&apikey=4867be78`
-		);
-
-		requisicao.onload = function () {
-			if (requisicao.status === 200) {
-				const movieObj = JSON.parse(requisicao.response);
-				setMovieObjs([...movieObjs, movieObj]);
-			} else {
-				console.log("erro");
-			}
-		};
-
-		requisicao.send();
+		axios
+			.get(url)
+			.then((response) => {
+				const data = response.data;
+				movieObjs.push(data);
+			})
+			.catch((e) => console.log(e));
 	}
-
-	ids.forEach((id) => requisitaApi(id));
 
 	return (
 		<main>
-			{movieObjs
-				? movieObjs.map((data, i) => <Card info={data} key={i} />)
-				: null}
+			{ids.map((id, i) => {
+				let index = i;
+				console.log(index);
+				console.log(movieObjs);
+				getMovieData(id);
+
+				return <Card info={movieObjs} key={i} index={index} />;
+			})}
 		</main>
 	);
 };

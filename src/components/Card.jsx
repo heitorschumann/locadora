@@ -1,12 +1,17 @@
 import React from "react";
 import "./card.css";
 const Card = (props) => {
+	let poster = props.info[props.index].Poster;
+	let title = props.info[props.index].Title;
+	let plot = props.info[props.index].Plot;
+
 	return (
 		<div className="card">
-			<img src={props.info.Poster} alt={props.info.Title} />
+			<img src={poster} alt={title} />
 			<div>
-				<h2>{props.info.Title}</h2>
-				<p>{props.info.Plot}</p>
+				<p>{console.log(props, poster, plot, title)}</p>
+				<h2>{title} </h2>
+				<p>{plot}</p>
 			</div>
 		</div>
 	);
