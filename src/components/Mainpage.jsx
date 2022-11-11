@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import "./mainpage.css";
 import Card from "./Card";
-import { useEffect } from "react";
 
 const ids = [
 	"tt0068646",
@@ -30,29 +29,53 @@ const ids = [
 ];
 
 const Mainpage = () => {
-	let movieObjs = [];
+	// let cards = [];
 
-	function getMovieData(id) {
+	function getMovieData(id, i) {
 		let url = `http://www.omdbapi.com/?i=${id}&apikey=4867be78`;
+		// let card;
+		let info = {};
 
 		axios
 			.get(url)
 			.then((response) => {
 				const data = response.data;
-				movieObjs.push(data);
+				info = { ...data };
+				// card = createCard(data, i);
+				// cards.push(card);
+				console.log("info", info);
 			})
 			.catch((e) => console.log(e));
+
+		console.log("info", info);
+
+		return (
+			<Card
+				title={info.Title}
+				plot={info.Plot}
+				poster={info.Poster}
+				key={i}
+			/>
+		);
 	}
+
+	// function createCard(info, i) {
+	// 	// console.log(info, i);
+
+	// 	return (
+	// 		<Card
+	// 			title={info.Title}
+	// 			plot={info.Plot}
+	// 			poster={info.Poster}
+	// 			key={i}
+	// 		/>
+	// 	);
+	// }
 
 	return (
 		<main>
 			{ids.map((id, i) => {
-				let index = i;
-				console.log(index);
-				console.log(movieObjs);
-				getMovieData(id);
-
-				return <Card info={movieObjs} key={i} index={index} />;
+				return getMovieData(id, i);
 			})}
 		</main>
 	);
