@@ -1,13 +1,19 @@
 .card {
-	height: 55vh;
+	height: 50vh;
 	width: 25vw;
+	transition: all 0.3s;
 }
 
 .card img {
-	height: 30vh;
-	width: 12vw;
+	height: 40vh;
 	display: block;
 	margin: 10px auto;
+	border-radius: 1rem;
+}
+
+.card:hover {
+	cursor: pointer;
+	transform: scale(1.1);
 }
 
 .card div {

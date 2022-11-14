@@ -9,6 +9,11 @@ header {
 	align-items: center;
 }
 
+.icon {
+	width: 3rem;
+	height: 3rem;
+}
+
 ul {
 	width: 20vw;
 	height: 10vh;
@@ -24,4 +29,7 @@ a {
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 1.2rem;
+}
+h1 {
+	color: rgb(6, 247, 251);
 }

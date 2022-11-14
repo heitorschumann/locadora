@@ -11,7 +11,6 @@ const Card = (props) => {
 			<div>
 				<p>{console.log(props)}</p>
 				<h2>{props.title} </h2>
-				<p>{props.plot}</p>
 			</div>
 		</div>
 	);
