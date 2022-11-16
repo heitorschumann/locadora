@@ -3,33 +3,68 @@ import "./mainpage.css";
 import Card from "./Card";
 import { useEffect } from "react";
 import { ApiKey } from "../config/key";
+import { Link } from "react-router-dom";
+
+import Header from "./Header";
+import Footer from "./Footer";
 import { useState } from "react";
 
 const Mainpage = () => {
-	let url = `https://api.themoviedb.org/3/movie/popular?api_key=${ApiKey}&language=en-US&page=1`;
-	let [movies, setMovies] = useState([]);
-	const img_path = "https://image.tmdb.org/t/p/w500";
+	let [movie, setMovie] = useState();
+	let [movieName, setMovieName] = useState();
 
 	useEffect(() => {
-		fetch(url)
+		console.log("useEffect", movie);
+	}, [movie]);
+
+	const pegaParametro = (event) => {
+		event.preventDefault();
+		let queryString = movieName.split(" ");
+		queryString = queryString.join("+");
+		console.log(queryString);
+		fetch(`http://www.omdbapi.com/?t=${queryString}&apikey=${ApiKey}`)
 			.then((response) => response.json())
-			.then((res) => setMovies(res.results))
+			.then((res) => setMovie(res))
 			.catch((e) => console.log(e));
-	}, [url]);
+	};
+
+	function handleMovieName(event) {
+		setMovieName(event.target.value);
+		console.log(movieName);
+	}
+
 	return (
 		<>
-			<span>Conheça nosso catálogo</span>
+			<Header />
+			<span>Explore nosso catálogo</span>
 			<main>
-				{movies.map((movie) => {
-					return (
+				<form className="busca">
+					<input
+						placeholder="buscar por titulo"
+						className="campoBusca"
+						value={movieName}
+						onChange={handleMovieName}
+					/>
+					<button
+						type="submit"
+						className="botaoBusca"
+						onClick={pegaParametro}
+					>
+						Buscar
+					</button>
+				</form>
+
+				{movie ? (
+					<Link to={`/details/${movie.imdbID}`}>
 						<Card
-							title={movie.title}
-							poster={`${img_path}${movie.poster_path}`}
-							key={movie.id}
+							title={movie.Title}
+							poster={movie.Poster}
+							key={movie.imdbID}
 						/>
-					);
-				})}
+					</Link>
+				) : null}
 			</main>
+			<Footer />
 		</>
 	);
 };

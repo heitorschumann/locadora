@@ -1,7 +1,7 @@
 .card {
 	height: 50vh;
 	width: 25vw;
-	margin: 3rem;
+	margin: 3rem auto;
 	transition: all 0.3s;
 }
 
