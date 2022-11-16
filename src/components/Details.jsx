@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 
 const Details = () => {
 	let { id } = useParams();
-	console.log(id);
 	const [movie, setMovie] = useState({});
 
 	useEffect(() => {

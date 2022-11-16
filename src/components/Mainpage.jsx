@@ -21,7 +21,6 @@ const Mainpage = () => {
 		event.preventDefault();
 		let queryString = movieName.split(" ");
 		queryString = queryString.join("+");
-		console.log(queryString);
 		fetch(`http://www.omdbapi.com/?t=${queryString}&apikey=${ApiKey}`)
 			.then((response) => response.json())
 			.then((res) => setMovie(res))
@@ -30,7 +29,6 @@ const Mainpage = () => {
 
 	function handleMovieName(event) {
 		setMovieName(event.target.value);
-		console.log(movieName);
 	}
 
 	return (
