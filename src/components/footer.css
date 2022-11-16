@@ -1,16 +1,14 @@
-header {
-	height: 10vh;
+footer {
+	height: 7vh;
 	width: 100%;
-	background-color: rgb(73, 73, 73);
-	padding: 15px;
+	background: rgb(73, 73, 73);
+	color: rgb(6, 247, 251);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-a {
+footer a {
 	text-decoration: none;
-}
-h1 {
 	color: rgb(6, 247, 251);
 }

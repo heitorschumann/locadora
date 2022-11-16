@@ -17,17 +17,20 @@ const Mainpage = () => {
 			.catch((e) => console.log(e));
 	}, [url]);
 	return (
-		<main>
-			{movies.map((movie) => {
-				return (
-					<Card
-						title={movie.title}
-						poster={`${img_path}${movie.poster_path}`}
-						key={movie.id}
-					/>
-				);
-			})}
-		</main>
+		<>
+			<span>Conheça nosso catálogo</span>
+			<main>
+				{movies.map((movie) => {
+					return (
+						<Card
+							title={movie.title}
+							poster={`${img_path}${movie.poster_path}`}
+							key={movie.id}
+						/>
+					);
+				})}
+			</main>
+		</>
 	);
 };
 
